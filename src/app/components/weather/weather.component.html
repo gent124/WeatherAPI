@@ -1,0 +1,4 @@
+<p>Weather API</p>
+<input type="text" placeholder="Weather Now" [(ngModel)]="weatherData" #myInput>
+
+<button (click)="getWeather(myInput.value)">get Weather</button>
