@@ -1,4 +1,16 @@
-<p>Weather API</p>
-<input type="text" placeholder="Weather Now" [(ngModel)]="weatherData" #myInput>
+<h1>Weather API</h1>
+<div class="container" [formGroup]="weatherForm">
+    <input type="text" placeholder="Latitude" formControlName="latitude">
+    <input type="text" placeholder="Longitude" formControlName="longitude">
 
-<button (click)="getWeather(myInput.value)">get Weather</button>
+    <button (click)="getWeather()" [disabled]="weatherForm.invalid">Get Weather</button>
+
+    <div *ngIf="weatherError" class="error-message">
+        {{weatherError}}
+    </div>
+
+    <div *ngIf="temperature">
+        The temperature in {{city }} is: {{ temperature }} degrees Celsius.
+        T
+    </div>
+</div>
