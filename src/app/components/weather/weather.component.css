@@ -1,0 +1,38 @@
+h1 {
+    margin: 40px auto;
+    text-align: center;
+}
+
+input {
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    margin: 40px auto;
+    padding: 15px auto;
+}
+
+.mainButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.mainButton:disabled {
+    opacity: 0.3;
+}
+
+.response {
+    font-size: 20px;
+}
