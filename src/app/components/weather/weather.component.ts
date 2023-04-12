@@ -4,6 +4,7 @@ import { WeatherResponse } from '../../interfaces/weather-response.interface'
 import { environment } from 'src/environments/environment.development';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { WeatherService } from '../../services/weather.service'
+import { TemperatureConverter } from 'src/app/pipes/temperature-converter.pipe';
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',

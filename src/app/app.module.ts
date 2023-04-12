@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TemperatureConverter } from './pipes/temperature-converter.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+    TemperatureConverter
   ],
   imports: [
     BrowserModule,

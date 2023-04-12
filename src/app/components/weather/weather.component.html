@@ -10,7 +10,6 @@
     </div>
 
     <div *ngIf="temperature">
-        The temperature in {{city }} is: {{ temperature }} degrees Celsius.
-        T
+        The temperature in {{ city }} is: {{ temperature | temperatureConverter : 'C' }} degrees Celsius.
     </div>
 </div>

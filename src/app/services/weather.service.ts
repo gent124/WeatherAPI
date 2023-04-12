@@ -16,7 +16,7 @@ export class WeatherService {
 
     }
 
-    getWeather(lon: number, lat: number) {
+    getWeather(lat: number, lon: number) {
         console.log('in service')
         const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${environment.API_KEY}`;
 
