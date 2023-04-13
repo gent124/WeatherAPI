@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { WeatherResponse } from '../../interfaces/weather-response.interface'
-import { environment } from 'src/environments/environment.development';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { WeatherService } from '../../services/weather.service'
-import { TemperatureConverter } from 'src/app/pipes/temperature-converter.pipe';
+import { WeatherService } from '../../services/weather.service';
+import { CoordinateService } from '../../services/cordinate.service';
+import { take } from 'rxjs/operators';
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -20,7 +19,21 @@ export class WeatherComponent implements OnInit {
   temperature?: number;
   city?: string;
 
-  constructor(private fb: FormBuilder, private weatherService: WeatherService) { }
+  constructor(private fb: FormBuilder, private weatherService: WeatherService, private coordinateService: CoordinateService) {
+    this.weatherForm = this.fb.group({
+      latitude: ['', [Validators.required, Validators.min(-90), Validators.max(90)]],
+      longitude: ['', [Validators.required, Validators.min(-180), Validators.max(180)]]
+    });
+
+    this.coordinateService.getCoordinates().subscribe(coords => {
+      if (coords) {
+        this.weatherForm.patchValue({
+          latitude: coords.lat,
+          longitude: coords.lon
+        });
+      }
+    });
+  }
 
 
   ngOnInit(): void {
@@ -30,15 +43,13 @@ export class WeatherComponent implements OnInit {
     });
   }
 
-
   getWeather() {
-    console.log('in compoentns');
     const latitude = this.weatherForm.get('latitude')?.value;
     const longitude = this.weatherForm.get('longitude')?.value;
 
     this.weatherService.getWeather(latitude, longitude)
       .subscribe(data => {
-        this.weatherData = data
+        this.weatherData = data;
         this.temperature = data.list[0].main.temp;
         this.city = data.city.name;
         this.weatherError = null;
@@ -46,6 +57,6 @@ export class WeatherComponent implements OnInit {
         error => {
           this.weatherError = error.message;
           this.weatherData = null;
-        })
+        });
   }
-};
+}

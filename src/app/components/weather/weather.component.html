@@ -3,12 +3,12 @@
     <input type="text" placeholder="Latitude" formControlName="latitude">
     <input type="text" placeholder="Longitude" formControlName="longitude">
 
+
     <button class="mainButton" (click)="getWeather()" [disabled]="weatherForm.invalid">Get Weather</button>
 
     <div *ngIf="weatherError" class="error-message">
         {{weatherError}}
     </div>
-
     <div *ngIf="temperature" class="response">
         The temperature in {{ city }} is: {{ temperature | temperatureConverter : 'C' }} degrees C.
     </div>

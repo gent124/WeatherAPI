@@ -7,13 +7,15 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TemperatureConverter } from './pipes/temperature-converter.pipe';
+import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
-    TemperatureConverter
+    TemperatureConverter,
+    MapComponent
   ],
   imports: [
     BrowserModule,
