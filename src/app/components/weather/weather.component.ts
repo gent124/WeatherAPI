@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { WeatherService } from '../../services/weather.service';
 import { CoordinateService } from '../../services/cordinate.service';
 import { take } from 'rxjs/operators';
-
+import { MapService } from 'src/app/services/map.service';
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -19,7 +19,7 @@ export class WeatherComponent implements OnInit {
   temperature?: number;
   city?: string;
 
-  constructor(private fb: FormBuilder, private weatherService: WeatherService, private coordinateService: CoordinateService) {
+  constructor(private fb: FormBuilder, private weatherService: WeatherService, private coordinateService: CoordinateService, private mapService: MapService) {
     this.weatherForm = this.fb.group({
       latitude: ['', [Validators.required, Validators.min(-90), Validators.max(90)]],
       longitude: ['', [Validators.required, Validators.min(-180), Validators.max(180)]]
@@ -37,6 +37,8 @@ export class WeatherComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.mapService.mapInit();
+    this.mapService.onMapClick();
     this.weatherForm = this.fb.group({
       latitude: ['', [Validators.required, Validators.min(-90), Validators.max(90)]],
       longitude: ['', [Validators.required, Validators.min(-180), Validators.max(180)]]
